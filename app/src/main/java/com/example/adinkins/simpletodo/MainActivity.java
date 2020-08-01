@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 //display the activity
                 startActivityForResult(intent, EDIT_TEXT_CODE);
             }
-        }
+        };
        ItemsAdapter.OnLongClickListener onLongClickListener =  new ItemsAdapter.OnLongClickListener(){
             @Override
             public void onItemLongClicked(int position) {
@@ -91,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
     // Handle the result of the editActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode ==EDIT_TEXT_CODE){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == EDIT_TEXT_CODE) {
             //Retrieve the updated text value
             String itemText = data.getStringExtra(KEY_ITEM_TEXT);
             //Extract the original position of the edited item from the position key
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Item Updated Successfully", Toast.LENGTH_SHORT).show();
 
         } else {
-            Log.w("MainActivity", "Unknown call to onActivityResult")
+            Log.w("MainActivity", "Unknown call to onActivityResult");
         }
     }
 
